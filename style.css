@@ -1,0 +1,342 @@
+/* Variables de Diseño Romántico */
+:root {
+    --bg-color: #1a1515;
+    --card-bg: #292222;
+    --accent-pink: #ff85a2;
+    --accent-red: #ff4d6d;
+    --text-light: #f8f9fa;
+    --text-muted: #ced4da;
+    --paper-white: #fffdf9;
+    --paper-text: #2b2222;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-light);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+}
+
+/* Contenedor Principal */
+.interface-container {
+    width: 100%;
+    max-width: 450px;
+    padding: 20px;
+    position: relative;
+    z-index: 10;
+}
+
+/* Estados de las pantallas */
+.screen {
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.screen.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+}
+
+/* Estilo Candado y Cuenta Atrás */
+.lock-card {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 30px 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255, 133, 162, 0.2);
+    width: 100%;
+}
+
+.lock-icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    animation: pulse 2s infinite;
+}
+
+.lock-card h2 {
+    color: var(--accent-pink);
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.lock-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 20px;
+    line-height: 1.4;
+}
+
+.countdown-timer {
+    font-size: 1.3rem;
+    font-weight: 600;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 12px;
+    border-radius: 10px;
+    color: var(--accent-pink);
+    letter-spacing: 1px;
+}
+
+/* Botones */
+.btn {
+    background-color: var(--accent-red);
+    color: white;
+    border: none;
+    padding: 14px 28px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(255, 77, 109, 0.4);
+    transition: all 0.3s ease;
+    font-family: 'Quicksand', sans-serif;
+    margin-top: 25px;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(255, 77, 109, 0.6);
+    background-color: #ff3355;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    border: 2px solid #8b7377;
+    color: #614d51;
+    box-shadow: none;
+}
+
+.btn-secondary:hover {
+    background-color: #f5ebe6;
+    color: var(--paper-text);
+    box-shadow: none;
+    border-color: var(--paper-text);
+}
+
+/* Diseño del Sobre Interactiva */
+.envelope-wrapper {
+    height: 220px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.envelope {
+    position: relative;
+    width: 280px;
+    height: 180px;
+    background: #e29595;
+    border-radius: 0 0 10px 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.envelope .flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-left: 140px solid transparent;
+    border-right: 140px solid transparent;
+    border-top: 100px solid #e29595;
+    transform-origin: top;
+    transition: transform 0.4s ease 0.2s;
+    z-index: 4;
+}
+
+.envelope .pocket {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 140px solid #f0a8a8;
+    border-right: 140px solid #f0a8a8;
+    border-bottom: 90px solid #f3b0b0;
+    border-top: 90px solid transparent;
+    border-radius: 0 0 10px 10px;
+    z-index: 3;
+}
+
+.envelope .letter-preview {
+    position: absolute;
+    bottom: 10px;
+    left: 20px;
+    right: 20px;
+    height: 140px;
+    background: var(--paper-white);
+    border-radius: 5px;
+    z-index: 2;
+    transition: transform 0.4s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.envelope .letter-preview span {
+    font-family: 'Caveat', cursive;
+    color: var(--paper-text);
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.envelope .seal {
+    position: absolute;
+    top: 80px;
+    left: 125px;
+    width: 30px;
+    height: 30px;
+    background: var(--accent-red);
+    border-radius: 50%;
+    z-index: 5;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 0.9rem;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+    transition: transform 0.3s ease;
+}
+
+/* Animación del Sobre Abriéndose */
+.envelope.open .flap {
+    transform: rotateX(180deg);
+    z-index: 1;
+    transition: transform 0.4s ease, z-index 0.05s ease 0.2s;
+}
+
+.envelope.open .letter-preview {
+    transform: translateY(-70px);
+    z-index: 2;
+    transition: transform 0.4s ease 0.4s;
+}
+
+/* Diseño de la Carta de Papel Real */
+.paper-letter {
+    background: var(--paper-white);
+    color: var(--paper-text);
+    padding: 35px 25px;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.6), inset 0 0 20px rgba(0,0,0,0.05);
+    width: 100%;
+    max-height: 82vh;
+    display: flex;
+    flex-direction: column;
+    background-image: linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px);
+    background-size: 100% 28px;
+    line-height: 28px;
+}
+
+.letter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px dashed rgba(0,0,0,0.15);
+    padding-bottom: 10px;
+}
+
+.letter-header h1 {
+    font-family: 'Caveat', cursive;
+    font-size: 2.2rem;
+    color: #a44a5e;
+}
+
+.heart-decoration {
+    color: var(--accent-pink);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+}
+
+.letter-body {
+    font-family: 'Caveat', cursive;
+    font-size: 1.55rem;
+    font-weight: 500;
+    overflow-y: auto;
+    flex-grow: 1;
+    padding-right: 5px;
+    text-align: left;
+    white-space: pre-line;
+}
+
+/* Barra de scroll de la carta sutil */
+.letter-body::-webkit-scrollbar {
+    width: 4px;
+}
+.letter-body::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.1);
+    border-radius: 10px;
+}
+
+.letter-footer {
+    margin-top: 20px;
+    border-top: 1px dashed rgba(0,0,0,0.15);
+    padding-top: 15px;
+    text-align: center;
+}
+
+.letter-footer p {
+    font-family: 'Caveat', cursive;
+    font-size: 1.4rem;
+    color: #7d6367;
+}
+
+/* Sistema de Partículas */
+#heart-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 999;
+    overflow: hidden;
+}
+
+.floating-heart {
+    position: absolute;
+    color: var(--accent-pink);
+    font-size: 1.5rem;
+    pointer-events: none;
+    animation: floatUp linear forwards;
+}
+
+/* Animaciones Clave */
+@keyframes floatUp {
+    0% {
+        transform: translateY(100vh) translateX(0) scale(0.5);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.8;
+    }
+    90% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-10vh) translateX(var(--move-x)) scale(var(--scale));
+        opacity: 0;
+    }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); color: var(--accent-pink); }
+    100% { transform: scale(1); }
+}

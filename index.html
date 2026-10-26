@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para mi amor ♥</title>
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Caveat:wght@500;700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Contenedor de partículas de corazones -->
+    <div id="heart-container"></div>
+
+    <div class="interface-container">
+        <!-- Pantalla de Cuenta Regresiva / Candado -->
+        <div id="lock-screen" class="screen active">
+            <div class="lock-card">
+                <div class="lock-icon">🔒</div>
+                <h2 id="lock-title">Capítulo Bloqueado</h2>
+                <p id="lock-message">Cargando el tiempo amor...</p>
+                <div id="countdown" class="countdown-timer">00d 00h 00m 00s</div>
+            </div>
+        </div>
+
+        <!-- Pantalla del Sobre Interactivo -->
+        <div id="envelope-screen" class="screen">
+            <div class="envelope-wrapper">
+                <div class="envelope" id="envelope">
+                    <div class="flap"></div>
+                    <div class="pocket"></div>
+                    <div class="letter-preview">
+                        <span id="preview-chapter-title">Capítulo X</span>
+                    </div>
+                    <div class="seal" id="seal">♥</div>
+                </div>
+            </div>
+            <button id="open-button" class="btn">Abrir carta amor ♥</button>
+        </div>
+
+        <!-- Pantalla de la Carta Abierta -->
+        <div id="letter-screen" class="screen">
+            <div class="paper-letter">
+                <div class="letter-header">
+                    <span class="heart-decoration">♥♥♥</span>
+                    <h1 id="letter-title">Capítulo X</h1>
+                    <span class="heart-decoration">♥♥♥</span>
+                </div>
+                <div class="letter-body" id="letter-text">
+                    <!-- El texto largo se inyecta dinámicamente aquí -->
+                </div>
+                <div class="letter-footer">
+                    <p>Con todo mi amor, para siempre. ♥</p>
+                    <button id="close-button" class="btn btn-secondary">Guardar en el corazón</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
